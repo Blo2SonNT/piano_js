@@ -60,6 +60,29 @@
         //bind
         const llamadoConBind = mostrarInfo.bind(personaje3)
         document.querySelector('#mensajeBind').innerHTML = llamadoConBind('Kakegurui', 12)
+
+
+
+
+        class Persona {
+            constructor(nombre) {
+                this.nombre = nombre;
+                this.saludo = this.saludo.bind(this);
+            }
+
+            saludo() {
+                console.log(`Hola, mi nombre es ${this.nombre}.`);
+            }
+        }
+
+        const persona1 = new Persona("Juan");
+        const persona2 = new Persona("María");
+
+        const saludoFunc1 = persona1.saludo;
+        const saludoFunc2 = persona2.saludo;
+
+        saludoFunc1(); // Imprimirá "Hola, mi nombre es Juan."
+        saludoFunc2(); // Imprimirá "Hola, mi nombre es María."
     </script>
 </body>
 
