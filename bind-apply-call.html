@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="mensajeCall"></div>
+    <div id="mensajeApply"></div>
+    <div id="mensajeBind"></div>
+    <script>
+        //contexto del this
+
+        //Ejemplo sin darle el contexto al this
+        //window.name
+
+        let personaje1 = {
+            nombre: 'Kirito',
+            img: 'https://i.pinimg.com/474x/be/af/19/beaf19bddcdb33fde29014ab186c9e61.jpg'
+        }
+
+        let personaje2 = {
+            nombre: 'Asuna',
+            img: 'https://i.pinimg.com/originals/57/e5/99/57e599adbd7a0f6b09079335f6cdb73e.jpg'
+        };
+        // img: 'https://www.seekpng.com/png/full/156-1560119_asuna-transparent-cool-sword-art-online-asuna-transparent.png'
+
+        let personaje3 = {
+            nombre: 'Yumeko',
+            img: 'https://i.pinimg.com/originals/29/fe/80/29fe8096fc00ba97d58aa2dcdf3a35f2.jpg'
+        }
+
+        function mostrarInfo(serie, capitulos) {
+            return `
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="${this.img}" alt="${this.nombre}" class="img-fluid rounded-start">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">${this.nombre}</h5>
+                                <p class="card-text">El personaje ${this.nombre} pertenece al anime ${serie}, que tiene ${capitulos} capítulos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+        }
+
+        //call
+        document.querySelector('#mensajeCall').innerHTML = mostrarInfo.call(personaje1, 'SAO', 56);
+        //apply
+        document.querySelector('#mensajeApply').innerHTML = mostrarInfo.apply(personaje2, ['SAO', 56]);
+
+        //bind
+        const llamadoConBind = mostrarInfo.bind(personaje3)
+        document.querySelector('#mensajeBind').innerHTML = llamadoConBind('Kakegurui', 12)
+    </script>
+</body>
+
+</html>
