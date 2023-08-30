@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Piano Virtual</title>
+</head>
+
+<body>
+    <div id="piano">
+        <!-- Teclas del piano -->
+    </div>
+
+    <script>
+        class TeclaPiano {
+            constructor(nota) {
+                this.nota = nota;
+                this.elemento = document.createElement("div");
+                this.elemento.className = "tecla-piano";
+                this.elemento.dataset.nota = this.nota;
+                this.elemento.addEventListener("click", this.reproducirSonido.bind(this));
+            }
+
+            reproducirSonido() {
+                const audio = new Audio(this.nota);
+                audio.play();
+            }
+        }
+
+        const teclasPiano = [
+            new TeclaPiano("nota1.mp3"),
+            new TeclaPiano("nota2.mp3"),
+            new TeclaPiano("nota3.mp3"),
+            new TeclaPiano("nota4.mp3"),
+            new TeclaPiano("nota5.mp3"),
+            new TeclaPiano("nota6.mp3"),
+            new TeclaPiano("nota7.mp3"),
+            new TeclaPiano("nota8.mp3")
+        ];
+
+        const pianoContainer = document.getElementById("piano");
+        teclasPiano.forEach(tecla => pianoContainer.appendChild(tecla.elemento));
+    </script>
+
+    <style>
+        .tecla-piano {
+            width: 40px;
+            height: 150px;
+            background-color: white;
+            border: 1px solid black;
+            display: inline-block;
+            margin: 2px;
+            cursor: pointer;
+        }
+    </style>
+</body>
+
+</html>
